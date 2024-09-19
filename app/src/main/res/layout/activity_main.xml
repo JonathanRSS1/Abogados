@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abogados"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="346dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <EditText
+        android:id="@+id/txtEdad"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Edad"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+    <EditText
+        android:id="@+id/txtCorreo"
+        android:layout_width="348dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:hint="Correo"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <EditText
+        android:id="@+id/txtPeso"
+        android:layout_width="172dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="Peso"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="170dp" />
+
+    <Button
+        android:id="@+id/btnInsertar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insertar"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvAbogados"
+        android:layout_width="405dp"
+        android:layout_height="303dp"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="427dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
