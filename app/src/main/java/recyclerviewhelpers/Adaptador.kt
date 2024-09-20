@@ -46,8 +46,8 @@ class Adaptador(var Datos: List<tbAbogado>): RecyclerView.Adapter<ViewHolder>() 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val objConexion = ClaseConexion().cadenaConexion()
-                val deleteStatement = objConexion?.prepareStatement("DELETE FROM tbAbogado WHERE uuid = ?")
-                deleteStatement?.setString(1, ticketEliminado.uuid)
+                val deleteStatement = objConexion?.prepareStatement("DELETE FROM tbAbogado WHERE UUID_Abogado = ?")
+                deleteStatement?.setString(1, ticketEliminado.UUID_Abogado)
                 deleteStatement?.executeUpdate()
                 objConexion?.commit()
             } catch (e: SQLException) {
@@ -67,17 +67,17 @@ class Adaptador(var Datos: List<tbAbogado>): RecyclerView.Adapter<ViewHolder>() 
             try {
                 val objConexion = ClaseConexion().cadenaConexion()
                 val updateTicket = objConexion?.prepareStatement(
-                    "UPDATE tbAbogado SET Nombre_Abogado = ?, Peso_Abogado = ?, Edad_Abogado = ?, Correo_Abogado = ? WHERE uuid = ?"
+                    "UPDATE tbAbogado SET Nombre_Abogado = ?,  Edad_Abogado = ?, Peso_Abogado = ?, Correo_Abogado = ? WHERE UUID_Abogado = ?"
                 )
                 updateTicket?.setString(1, ticketActualizado.Nombre_Abogado)
-                updateTicket?.setDouble(2, ticketActualizado.Peso_Abogado as Double)
-                updateTicket?.setInt(3, ticketActualizado.Edad_Abogado.toInt())
+                updateTicket?.setInt(2, ticketActualizado.Edad_Abogado.toInt())
+                updateTicket?.setDouble(3, ticketActualizado.Peso_Abogado as Double)
                 updateTicket?.setString(4, ticketActualizado.Correo_Abogado)
-                updateTicket?.setString(5, ticketActualizado.uuid)
+                updateTicket?.setString(5, ticketActualizado.UUID_Abogado)
                 updateTicket?.executeUpdate()
 
                 withContext(Dispatchers.Main) {
-                    val indice = Datos.indexOfFirst { it.uuid == ticketActualizado.uuid }
+                    val indice = Datos.indexOfFirst { it.UUID_Abogado == ticketActualizado.UUID_Abogado }
                     if (indice != -1) {
                         val listaMutable = Datos.toMutableList()
                         listaMutable[indice] = ticketActualizado
@@ -121,10 +121,12 @@ class Adaptador(var Datos: List<tbAbogado>): RecyclerView.Adapter<ViewHolder>() 
         holder.txtNombreCard.text = item1.Nombre_Abogado
 
         val item2 = Datos[position]
-        holder.txtPesoCard.text = item2.Peso_Abogado.toString()
+        holder.txtEdadCard.text = item2.Edad_Abogado.toString()
+
 
         val item3 = Datos[position]
-        holder.txtEdadCard.text = item3.Edad_Abogado.toString()
+        holder.txtPesoCard.text = item3.Peso_Abogado.toString()
+
 
         val item4 = Datos[position]
         holder.txtEmailCard.text = item4.Correo_Abogado
@@ -167,25 +169,30 @@ class Adaptador(var Datos: List<tbAbogado>): RecyclerView.Adapter<ViewHolder>() 
             builder.setView(view)
 
             val txtNombre = view.findViewById<EditText>(R.id.txtNombre)
-            val txtPeso = view.findViewById<EditText>(R.id.txtPeso)
             val txtEdad = view.findViewById<EditText>(R.id.txtEdad)
+            val txtPeso = view.findViewById<EditText>(R.id.txtPeso)
             val txtEmail = view.findViewById<EditText>(R.id.txtEmail)
 
 
             // Llena los cuadros de texto con los datos actuales del ticket
 
-            txtNombre.setText(item1.Nombre_Abogado)
-            txtPeso.setText(item1.Peso_Abogado.toString())
-            txtEdad.setText(item1.Edad_Abogado.toString())
-            txtEmail.setText(item1.Correo_Abogado)
+
+
+            val abogado = Datos[position]
+
+            txtNombre.setText(abogado.Nombre_Abogado)
+            txtEdad.setText(abogado.Edad_Abogado.toString())
+            txtPeso.setText(abogado.Peso_Abogado.toString())
+            txtEmail.setText(abogado.Correo_Abogado)
+
 
 
             builder.setPositiveButton("Actualizar") { dialog, which ->
                 val ticketActualizado = tbAbogado(
-                    item1.uuid,
+                    abogado.UUID_Abogado,
                     txtNombre.text.toString(),
-                    txtPeso.text.toString().toDouble(),
                     txtEdad.text.toString().toInt(),
+                    txtPeso.text.toString().toDouble(), // Asegúrate de usar toDouble() aquí
                     txtEmail.text.toString(),
 
                 )

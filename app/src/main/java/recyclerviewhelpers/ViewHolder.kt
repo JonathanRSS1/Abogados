@@ -26,8 +26,8 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(ticket: tbAbogado) {
         txtNombreCard.text = ticket.Nombre_Abogado
-        txtEdadCard.text = ticket.Edad_Abogado.toString()
         txtPesoCard.text = ticket.Peso_Abogado.toString()
+        txtEdadCard.text = ticket.Edad_Abogado.toString()
         txtEmailCard.text = ticket.Correo_Abogado
 
     }

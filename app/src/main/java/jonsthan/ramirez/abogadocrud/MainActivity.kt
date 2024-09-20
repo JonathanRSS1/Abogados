@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val txtNombre = findViewById<EditText>(R.id.txtNombre)
-        val txtEmail = findViewById<EditText>(R.id.txtEmail)
+        val txtCorreo = findViewById<EditText>(R.id.txtCorreo)
         val txtPeso = findViewById<EditText>(R.id.txtPeso)
         val txtEdad = findViewById<EditText>(R.id.txtEdad)
 
@@ -63,15 +63,15 @@ class MainActivity : AppCompatActivity() {
             val listaAbogados = mutableListOf<tbAbogado>()
 
             while (resultSet.next()){
-                val uuid = resultSet.getString("uuid")
+                val UUID_Abogado = resultSet.getString("UUID_Abogado")
                 val Nombre_Abogado = resultSet.getString("Nombre_Abogado")
-                val Peso_Abogado = resultSet.getDouble("Peso_Abogado")
                 val Edad_Abogado = resultSet.getInt("Edad_Abogado")
+                val Peso_Abogado = resultSet.getDouble("Peso_Abogado")
                 val Correo_Abogado = resultSet.getString("Correo_Abogado")
 
 
 
-                val valoresJuntos = tbAbogado(uuid, Nombre_Abogado, Peso_Abogado, Edad_Abogado, Correo_Abogado)
+                val valoresJuntos = tbAbogado(UUID_Abogado, Nombre_Abogado,Edad_Abogado,Peso_Abogado, Correo_Abogado)
 
                 listaAbogados.add(valoresJuntos)
 
@@ -112,12 +112,12 @@ class MainActivity : AppCompatActivity() {
                 // Crear una variable que contenga un PrepareStatement
 
 
-                val addAbogado = objConexion?.prepareStatement("insert into tbAbogado (uuid, Nombre_Abogado, Peso_Abogado, Edad_Abogado, Correo_Abogado)  VALUES (?, ?, ?, ?, ?)")!!
+                val addAbogado = objConexion?.prepareStatement("insert into tbAbogado (UUID_Abogado, Nombre_Abogado, Edad_Abogado,Peso_Abogado,Correo_Abogado)  VALUES (?, ?, ?, ?, ?)")!!
                 addAbogado.setString(1, UUID.randomUUID().toString())
                 addAbogado.setString(2, txtNombre.text.toString())
-                addAbogado.setDouble(3, txtPeso.text.toString().toDouble())
-                addAbogado.setInt(4, txtEdad.text.toString().toInt())
-                addAbogado.setString(5, txtEmail.text.toString())
+                addAbogado.setInt(3, txtEdad.text.toString().toInt())
+                addAbogado.setDouble(4, txtPeso.text.toString().toDouble())
+                addAbogado.setString(5, txtCorreo.text.toString())
 
                 addAbogado.executeUpdate()
 

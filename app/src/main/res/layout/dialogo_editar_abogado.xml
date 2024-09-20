@@ -10,7 +10,25 @@
         android:layout_height="342dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="3dp">
+        tools:layout_editor_absoluteY="36dp">
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/txtEdad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edad" />
+
+        <EditText
+            android:id="@+id/txtPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso" />
 
         <EditText
             android:id="@+id/txtEmail"
@@ -18,27 +36,6 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/txtNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:hint="Nombre"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/txtPeso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:hint="Peso" />
-
-        <EditText
-            android:id="@+id/txtEdad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="Edad" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
